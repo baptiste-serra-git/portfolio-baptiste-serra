@@ -54,8 +54,8 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      /* 📌 REMPLACEZ PAR VOTRE IMAGE : background-image: url('votre-photo-hero.jpg'); */
-      background-image: url('votre-photo-hero.jpg');
+      background-image: url('hero-fond.jpg');
+      background-size: cover; background-position: center;
     }
     .hero-bg::after { content: ''; position: absolute; inset: 0; background: rgba(20,20,28,0.60); }
     .hero-content { position: relative; z-index: 1; }
@@ -229,7 +229,11 @@
 <!-- ═══════════════════ HERO ═════════════════════ -->
 <section id="hero">
   <div class="hero-bg">
-    <background-image: url('systemes-embarques-datascientest.jpg');>
+    <!--
+      📌 IMAGE HERO :
+      Remplacez le gradient par :
+      background-image: url('votre-image-fond.jpg');
+    -->
   </div>
   <div class="hero-content">
     <h1>Baptiste Serra</h1>
