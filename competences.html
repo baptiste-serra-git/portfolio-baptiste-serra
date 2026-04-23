@@ -1,1 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compétences - Baptiste SERRA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --dark: #1a1a1e;
+      --light-bg: #f4f4f6;
+      --white: #ffffff;
+      --accent: #c0392b;
+      --accent2: #e74c3c;
+      --text-body: #444;
+      --border: #ddd;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--light-bg); color: var(--text-body); overflow-x: hidden; }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 40px; background: rgba(26,26,30,0.95); backdrop-filter: blur(8px);
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--white); border-bottom: 1.5px solid var(--accent2); padding-bottom: 2px; }
+    .btn-outline {
+      border: 1.5px solid var(--white); color: var(--white);
+      padding: 8px 18px; font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; text-decoration: none; font-weight: 600;
+      transition: all 0.25s; font-family: 'Montserrat', sans-serif;
+      background: transparent; cursor: pointer;
+    }
+    .btn-outline:hover { background: var(--white); color: var(--dark); }
+
+    /* ─── PAGE CONTENT ─── */
+    .page-wrapper {
+      max-width: 1000px; margin: 0 auto;
+      padding: 120px 40px 80px;
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px; font-weight: 300;
+      color: var(--dark); letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+    .title-bar { width: 36px; height: 3px; background: var(--accent); margin-bottom: 56px; }
+
+    /* ─── GRILLE COMPÉTENCES ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 80px;
+    }
+
+    .skill-item {
+      display: flex; gap: 24px; align-items: flex-start;
+    }
+    .skill-logo {
+      width: 72px; height: 72px; flex-shrink: 0;
+      object-fit: contain;
+    }
+    .skill-logo-placeholder {
+      width: 72px; height: 72px; flex-shrink: 0;
+      background: #ddd; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: #999; text-align: center;
+    }
+    .skill-content { flex: 1; }
+    .skill-name {
+      font-size: 14px; font-weight: 700; color: var(--dark);
+      margin-bottom: 10px; letter-spacing: 0.5px;
+    }
+    .skill-desc {
+      font-size: 12.5px; line-height: 1.8; color: #666;
+      text-align: justify;
+    }
+    .btn-cert {
+      display: inline-block; margin-top: 12px;
+      background: var(--dark); color: var(--white);
+      padding: 8px 18px; font-size: 11px; font-weight: 600;
+      letter-spacing: 1px; text-decoration: none;
+      border-radius: 4px; transition: background 0.2s;
+      font-family: 'Montserrat', sans-serif; cursor: pointer; border: none;
+    }
+    .btn-cert:hover { background: #333; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.45);
+      text-align: center; padding: 28px 40px;
+      font-size: 11px; letter-spacing: 1.5px; margin-top: 80px;
+    }
+    footer span { color: var(--accent2); }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .page-wrapper { padding: 100px 20px 60px; }
+      .skills-grid { grid-template-columns: 1fr; gap: 36px; }
+      .page-title { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<nav id="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="competences.html" class="active">Compétences</a></li>
+    <li><a href="formation.html">Mon Parcours</a></li>
+    <li><a href="projets.html">Projets</a></li>
+    <li><a href="experiences.html">Expériences</a></li>
+  </ul>
+  <a href="cv-baptiste-serra.pdf" class="btn-outline">Télécharger mon CV</a>
+</nav>
+
+<!-- ═══════════════════ CONTENU ══════════════════ -->
+<div class="page-wrapper">
+  <h1 class="page-title">Qualifications</h1>
+  <div class="title-bar"></div>
+
+  <div class="skills-grid">
+
+    <!-- Permis B -->
+    <div class="skill-item">
+      <img class="skill-logo" src="permis-logo.png" alt="Permis B" />
+      <!-- 📌 IMAGE : uploadez permis-logo.png -->
+      <div class="skill-content">
+        <div class="skill-name">Permis B</div>
+        <p class="skill-desc">
+          Je suis détenteur depuis juin 2023 du permis B, je pense aussi
+          passer mon permis A2 dans l'année 2026.
+        </p>
+      </div>
+    </div>
+
+    <!-- Projet Voltaire -->
+    <div class="skill-item">
+      <img class="skill-logo" src="voltaire-logo.png" alt="Projet Voltaire" />
+      <div class="skill-content">
+        <div class="skill-name">Projet Voltaire</div>
+        <p class="skill-desc">
+          Grâce à l'IUT de Montpellier-Sète, j'ai obtenu la certification du
+          projet Voltaire avec un score de 569.
+        </p>
+      </div>
+    </div>
+
+    <!-- Quartus PRIME -->
+    <div class="skill-item">
+      <img class="skill-logo" src="quartus-logo.png" alt="Quartus PRIME" />
+      <!-- 📌 IMAGE : uploadez quartus-logo.png -->
+      <div class="skill-content">
+        <div class="skill-name">Quartus PRIME</div>
+        <p class="skill-desc">
+          Logiciel de conception de circuits numériques utilisé en cours et en projet.
+          Il m'a permis d'apprendre la programmation VHDL ainsi que la synthèse
+          sur FPGA à des fins de prototypage et de simulation.
+        </p>
+      </div>
+    </div>
+
+    <!-- Visual Studio Code -->
+    <div class="skill-item">
+      <img class="skill-logo" src="vscode-logo.png" alt="Visual Studio Code" />
+      <!-- 📌 IMAGE : uploadez vscode-logo.png -->
+      <div class="skill-content">
+        <div class="skill-name">Visual Studio Code</div>
+        <p class="skill-desc">
+          C'est un outil que j'utilise très régulièrement pour tout type de
+          langages, il me permet aussi de simplifier l'utilisation et la
+          visualisation de Git.
+        </p>
+      </div>
+    </div>
+
+    <!-- KiCAD -->
+    <div class="skill-item">
+      <img class="skill-logo" src="kicad-logo.png" alt="KiCAD" />
+      <!-- 📌 IMAGE : uploadez kicad-logo.png -->
+      <div class="skill-content">
+        <div class="skill-name">KiCAD</div>
+        <p class="skill-desc">
+          C'est un logiciel que j'ai souvent eu l'occasion d'utiliser. C'est
+          avec celui que j'ai appris les bases du routage ainsi que les
+          spécifications liés aux empreintes, symboles et contraintes
+          liés au PCB.
+        </p>
+      </div>
+    </div>
+
+    <!-- STM32 CubeIDE -->
+    <div class="skill-item">
+      <img class="skill-logo" src="stm32-logo.png" alt="STM32 CubeIDE" />
+      <!-- 📌 IMAGE : uploadez stm32-logo.png -->
+      <div class="skill-content">
+        <div class="skill-name">STM32 CubeIDE</div>
+        <p class="skill-desc">
+          Cet IDE est très utilisé au sein de notre formation GEII car c'est
+          principalement sur des STM32F303 que nous programmons.
+          C'est donc un environnement que je maîtrise par cette
+          utilisation répétée.
+        </p>
+      </div>
+    </div>
+
+    <!-- QtCreator -->
+    <div class="skill-item">
+      <img class="skill-logo" src="qt-logo.png" alt="QtCreator" />
+      <!-- 📌 IMAGE : uploadez qt-logo.png -->
+      <div class="skill-content">
+        <div class="skill-name">QtCreator</div>
+        <p class="skill-desc">
+          Ce n'est que depuis cette année que nous utilisons QtCreator.
+          Il nous a permis d'explorer la notion de classe et de méthode
+          et nous a aussi permis d'aborder la notion de framework.
+        </p>
+      </div>
+    </div>
+
+    <!-- Git -->
+    <div class="skill-item">
+      <img class="skill-logo" src="git-logo.png" alt="Git" />
+      <!-- 📌 IMAGE : uploadez git-logo.png -->
+      <div class="skill-content">
+        <div class="skill-name">Git</div>
+        <p class="skill-desc">
+          Évidemment, avec tous les projets menés en groupe, j'ai pu
+          apprendre à utiliser les dépôts git afin de partager et
+          référencer les modifications sur un projet. Que ça soit du CAD
+          ou du code, aussi bien à l'école (géré par moi-même) ou en
+          entreprise.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ FOOTER ════════════════════ -->
+<footer>
+  © 2026 <span>Baptiste Serra</span> — Étudiant Alternant · Systèmes Embarqués &nbsp;|&nbsp; Tous droits réservés
+</footer>
+
+</body>
+</html>
