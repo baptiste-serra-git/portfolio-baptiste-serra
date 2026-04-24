@@ -217,8 +217,7 @@
 
   <!-- ─── NAVBAR PROJETS ─── -->
   <div class="proj-navbar">
-    <a href="#robot-sumo"   class="proj-nav-btn">Robot Sumo</a>
-    <a href="#haut-parleur" class="proj-nav-btn">Haut-Parleur</a>
+    <a href="#robot-sumo"   class="proj-nav-btn">Robot Rover</a>
     <a href="#projet-pro"   class="proj-nav-btn">Projet Pro</a>
     <a href="#prototype"    class="proj-nav-btn">Prototype</a>
   </div>
@@ -239,35 +238,11 @@
       </div>
       <div>
         <div class="proj-tag">Projet tutoré</div>
-        <div class="proj-title">Robot Sumo</div>
+        <div class="proj-title">Robot Rover</div>
         <div class="proj-bar"></div>
         <p class="proj-desc">Ce projet a été le plus important de ma deuxième année d'études. C'est celui qui m'a permis d'avoir une excellente note pour le projet tutoré.</p>
-        <p class="proj-desc">L'objectif était de réaliser, par groupe de trois, un robot sumo suivant les règles du TNRS (Tournoi National de Robot Sumo).</p>
+        <p class="proj-desc">L'objectif était de réaliser, par groupe de trois, un robot Rover piloté en bluetooth à distance avec un stream vidéo.</p>
         <button class="btn-savoir" onclick="openModal('modal-sumo')">En savoir plus</button>
-      </div>
-    </div>
-
-    <div class="proj-sep"></div>
-
-    <!-- Haut-Parleur — image droite -->
-    <div class="proj-row reverse" id="haut-parleur">
-      <div>
-        <!--
-          📌 IMAGE : <img class="proj-img" src="images/haut-parleur.png" alt="Haut-Parleur" />
-        -->
-        <div class="proj-img-placeholder">
-          <span>🔊</span>
-          <small>📌 haut-parleur.png</small>
-        </div>
-      </div>
-      <div>
-        <div class="proj-tag">Projet personnel</div>
-        <div class="proj-title">Haut-parleur mobile</div>
-        <div class="proj-bar"></div>
-        <p class="proj-desc">Voici un projet complètement personnel qui est en perpétuelle évolution. Étant un amoureux de la musique, j'ai décidé que ma voiture deviendrait un haut-parleur roulant.</p>
-        <p class="proj-desc">J'ai donc dimensionné et installé plusieurs dispositifs audio dans ma voiture.</p>
-        <p class="proj-note">(Pour l'instant, aucune limite n'est fixée.)</p>
-        <button class="btn-savoir" onclick="openModal('modal-parleur')">En savoir plus</button>
       </div>
     </div>
 
@@ -288,7 +263,7 @@
         <div class="proj-tag">Projet professionnel</div>
         <div class="proj-title">Projet professionnel</div>
         <div class="proj-bar"></div>
-        <p class="proj-desc">Description de votre projet professionnel réalisé en entreprise. Décrivez les technologies utilisées, les objectifs et les résultats obtenus.</p>
+        <p class="proj-desc">Lors de cette année d'alternance mon projet à consisté à la qualification harware et software d'une nouvelle base de téléassistance.</p>
         <button class="btn-savoir" onclick="openModal('modal-pro')">En savoir plus</button>
       </div>
     </div>
@@ -310,7 +285,7 @@
         <div class="proj-tag">Projet académique</div>
         <div class="proj-title">Prototype système de mesure</div>
         <div class="proj-bar"></div>
-        <p class="proj-desc">Prototype d'un système de mesure de température et de qualité d'air connecté. Description des capteurs utilisés, de l'architecture embarquée et de la connectivité mise en place.</p>
+        <p class="proj-desc">Prototype d'un système de mesure de température et de qualité d'air connecté.Conception des capteurs utilisés, de l'architecture embarquée et de la connectivité mise en place.</p>
         <button class="btn-savoir" onclick="openModal('modal-proto')">En savoir plus</button>
       </div>
     </div>
@@ -325,7 +300,7 @@
   <div class="modal">
     <button class="modal-close" onclick="closeModal('modal-sumo')">✕</button>
     <div class="modal-tag">Projet tutoré</div>
-    <div class="modal-title">Robot Sumo</div>
+    <div class="modal-title">Robot Rover</div>
     <div class="modal-bar"></div>
     <div class="modal-img-placeholder">
       <!-- 📌 <img class="modal-img" src="images/robot-sumo.png" alt="Robot Sumo" /> -->
@@ -333,34 +308,11 @@
     </div>
     <div class="modal-body">
       <p>Ce projet a été le plus important de ma deuxième année d'études. C'est celui qui m'a permis d'avoir une excellente note pour le projet tutoré.</p>
-      <p>L'objectif était de réaliser, par groupe de trois, un robot sumo suivant les règles du TNRS (Tournoi National de Robot Sumo).</p>
+      <p>L'objectif était de réaliser, par groupe de trois, un robot rover piloté en bluetooth à distance avec un stream vidéo.</p>
       <ol>
         <li>Décrivez ici la première étape ou responsabilité du projet.</li>
         <li>Technologies et outils utilisés (STM32, KiCAD, etc.).</li>
         <li>Résultats obtenus et compétences développées.</li>
-      </ol>
-    </div>
-  </div>
-</div>
-
-<!-- Modale Haut-Parleur -->
-<div class="modal-overlay" id="modal-parleur">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('modal-parleur')">✕</button>
-    <div class="modal-tag">Projet personnel</div>
-    <div class="modal-title">Haut-parleur mobile</div>
-    <div class="modal-bar"></div>
-    <div class="modal-img-placeholder">
-      <!-- 📌 <img class="modal-img" src="images/haut-parleur.png" alt="Haut-parleur" /> -->
-      📌 haut-parleur.png
-    </div>
-    <div class="modal-body">
-      <p>Projet complètement personnel en perpétuelle évolution. Étant un amoureux de la musique, j'ai décidé que ma voiture deviendrait un haut-parleur roulant.</p>
-      <p>J'ai donc dimensionné et installé plusieurs dispositifs audio dans ma voiture.</p>
-      <ol>
-        <li>Matériel choisi et dimensionnement.</li>
-        <li>Étapes d'installation et de câblage.</li>
-        <li>Résultats et prochaines évolutions prévues.</li>
       </ol>
     </div>
   </div>
@@ -378,11 +330,11 @@
       📌 projet-pro.png
     </div>
     <div class="modal-body">
-      <p>Description détaillée du projet professionnel réalisé en entreprise.</p>
+      <p>Dans la gamme ATTENTIVE, une nouvelle base de téléassistance a été conçu et ce fut ma mission de la qualifier.</p>
       <ol>
-        <li>Contexte et objectifs du projet.</li>
-        <li>Technologies et outils utilisés.</li>
-        <li>Résultats obtenus et compétences acquises.</li>
+        <li>J'ai dû qualifier l'intégralité des tensions de la carte.</li>
+        <li>Tester ses fonctionnalités sous diverses conditions.</li>
+        <li>Rédiger les rapports en liens avec ces tests.</li>
       </ol>
     </div>
   </div>
@@ -402,9 +354,9 @@
     <div class="modal-body">
       <p>Prototype d'un système de mesure de température et de qualité d'air connecté.</p>
       <ol>
-        <li>Capteurs utilisés et architecture embarquée.</li>
-        <li>Protocole de communication et connectivité.</li>
-        <li>Résultats des mesures et perspectives d'amélioration.</li>
+        <li>Capteurs à distance et architecture embarquée en C++.</li>
+        <li>Routage de la carte capteur et récepteur.</li>
+        <li>Résultats des mesures cryptés puis mis en base de donnée.</li>
       </ol>
     </div>
   </div>
