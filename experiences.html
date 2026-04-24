@@ -1,1 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expériences - Baptiste SERRA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --dark: #1a1a1e;
+      --light-bg: #f4f4f6;
+      --white: #ffffff;
+      --accent: #c0392b;
+      --accent2: #e74c3c;
+      --text-body: #444;
+      --border: #ddd;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--white); color: var(--text-body); overflow-x: hidden; }
+
+    /* ─── NAVBAR PRINCIPALE ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 40px; background: rgba(26,26,30,0.95); backdrop-filter: blur(8px);
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--white); border-bottom: 1.5px solid var(--accent2); padding-bottom: 2px; }
+    .btn-outline {
+      border: 1.5px solid var(--white); color: var(--white);
+      padding: 8px 18px; font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; text-decoration: none; font-weight: 600;
+      transition: all 0.25s; font-family: 'Montserrat', sans-serif;
+      background: transparent; cursor: pointer;
+    }
+    .btn-outline:hover { background: var(--white); color: var(--dark); }
+
+    /* ─── PAGE WRAPPER ─── */
+    .page-wrapper { max-width: 1000px; margin: 0 auto; padding: 110px 40px 80px; }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 300;
+      color: var(--dark); letter-spacing: 3px; margin-bottom: 12px;
+    }
+    .title-bar { width: 36px; height: 3px; background: var(--accent); margin-bottom: 36px; }
+
+    /* ─── NAVBAR EXPÉRIENCES ─── */
+    .exp-navbar {
+      display: flex; gap: 0;
+      border: 1px solid var(--border);
+      margin-bottom: 72px; overflow: hidden;
+    }
+    .exp-nav-btn {
+      flex: 1; padding: 16px 10px; text-align: center;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; text-decoration: none;
+      color: #888; background: var(--white);
+      border-right: 1px solid var(--border);
+      transition: all 0.25s;
+    }
+    .exp-nav-btn:last-child { border-right: none; }
+    .exp-nav-btn:hover { background: var(--dark); color: var(--white); }
+    .exp-nav-btn.active { background: var(--dark); color: var(--white); }
+
+    /* ─── EXPÉRIENCES EN QUINCONCE ─── */
+    .exp-list { display: flex; flex-direction: column; gap: 80px; }
+
+    .exp-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+    }
+    .exp-row.reverse { direction: rtl; }
+    .exp-row.reverse > * { direction: ltr; }
+
+    .exp-img {
+      width: 100%; aspect-ratio: 4/3; object-fit: contain;
+      box-shadow: 0 10px 32px rgba(0,0,0,0.08);
+      background: var(--light-bg); padding: 24px;
+    }
+    .exp-img-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: var(--light-bg);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; box-shadow: 0 10px 32px rgba(0,0,0,0.06);
+    }
+    .exp-img-placeholder span { font-size: 52px; }
+    .exp-img-placeholder small {
+      font-size: 10px; color: #aaa; font-style: italic; letter-spacing: 1px;
+    }
+
+    .exp-content {}
+    .exp-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+    }
+    .exp-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 300; color: var(--dark);
+      letter-spacing: 2px; margin-bottom: 6px;
+    }
+    .exp-period {
+      font-size: 11px; color: #7b9abf; font-weight: 600;
+      letter-spacing: 1px; margin-bottom: 16px;
+    }
+    .exp-bar { width: 28px; height: 2px; background: var(--accent); margin-bottom: 20px; }
+    .exp-desc {
+      font-size: 12.5px; line-height: 1.9; color: #666; margin-bottom: 10px;
+    }
+
+    /* ─── BOUTON EN SAVOIR PLUS ─── */
+    .btn-savoir {
+      display: inline-block; margin-top: 20px;
+      border: 1.5px solid var(--dark); color: var(--dark);
+      padding: 10px 24px; font-size: 10px; letter-spacing: 2.5px;
+      text-transform: uppercase; font-weight: 700;
+      transition: all 0.25s; font-family: 'Montserrat', sans-serif;
+      background: transparent; cursor: pointer;
+    }
+    .btn-savoir:hover { background: var(--dark); color: var(--white); }
+
+    /* ─── MODALE ─── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(10,10,14,0.75); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--white); max-width: 720px; width: 90%;
+      max-height: 85vh; overflow-y: auto;
+      padding: 48px 52px; position: relative;
+      transform: translateY(24px);
+      transition: transform 0.35s cubic-bezier(.25,.8,.25,1);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.25);
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal-close {
+      position: absolute; top: 20px; right: 24px;
+      background: none; border: none; cursor: pointer;
+      font-size: 22px; color: #aaa; transition: color 0.2s;
+      font-family: 'Montserrat', sans-serif; line-height: 1;
+    }
+    .modal-close:hover { color: var(--dark); }
+
+    .modal-header {
+      display: flex; gap: 28px; align-items: center; margin-bottom: 28px;
+    }
+    .modal-logo {
+      width: 80px; height: 80px; object-fit: contain;
+      background: var(--light-bg); padding: 10px; flex-shrink: 0;
+    }
+    .modal-logo-placeholder {
+      width: 80px; height: 80px; flex-shrink: 0;
+      background: var(--light-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+    }
+    .modal-title-wrap {}
+    .modal-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 4px;
+    }
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px; font-weight: 300; color: var(--dark);
+      letter-spacing: 2px; margin-bottom: 2px;
+    }
+    .modal-period { font-size: 11px; color: #7b9abf; font-weight: 600; letter-spacing: 1px; }
+    .modal-bar { width: 36px; height: 2px; background: var(--accent); margin: 20px 0; }
+    .modal-body p {
+      font-size: 13px; line-height: 1.9; color: #555;
+      text-align: justify; margin-bottom: 14px;
+    }
+    .modal-body ol, .modal-body ul {
+      padding-left: 20px; margin-bottom: 14px;
+    }
+    .modal-body li {
+      font-size: 13px; line-height: 1.9; color: #555; margin-bottom: 8px;
+    }
+
+    /* ─── SÉPARATEUR ─── */
+    .exp-sep { width: 100%; height: 1px; background: var(--border); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.45);
+      text-align: center; padding: 28px 40px;
+      font-size: 11px; letter-spacing: 1.5px; margin-top: 80px;
+    }
+    footer span { color: var(--accent2); }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .page-wrapper { padding: 100px 20px 60px; }
+      .page-title { font-size: 36px; }
+      .exp-navbar { flex-wrap: wrap; }
+      .exp-nav-btn { flex: 1 1 45%; border-bottom: 1px solid var(--border); }
+      .exp-row, .exp-row.reverse { grid-template-columns: 1fr; direction: ltr; gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR PRINCIPALE ════════ -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="competences.html">Compétences</a></li>
+    <li><a href="formation.html">Mon Parcours</a></li>
+    <li><a href="projets.html">Projets</a></li>
+    <li><a href="experiences.html" class="active">Expériences</a></li>
+  </ul>
+  <a href="cv-baptiste-serra.pdf" class="btn-outline">Télécharger mon CV</a>
+</nav>
+
+<!-- ═══════════════════ CONTENU ══════════════════ -->
+<div class="page-wrapper">
+
+  <h1 class="page-title">Mes Expériences</h1>
+  <div class="title-bar"></div>
+
+  <!-- ─── NAVBAR EXPÉRIENCES ─── -->
+  <div class="exp-navbar">
+    <a href="#primal"   class="exp-nav-btn">PRIMAL</a>
+    <a href="#mhr"      class="exp-nav-btn">MHR</a>
+    <a href="#sfei"     class="exp-nav-btn">SFEI</a>
+    <a href="#bde-geii" class="exp-nav-btn">BDE GEII</a>
+  </div>
+
+  <!-- ─── LISTE DES EXPÉRIENCES ─── -->
+  <div class="exp-list">
+
+    <!-- PRIMAL — image gauche -->
+    <div class="exp-row" id="primal">
+      <div>
+        <!--
+          📌 LOGO PRIMAL :
+          Remplacez le div par :
+          <img class="exp-img" src="images/solem_logo.png" alt="PRIMAL" />
+        -->
+        <div class="exp-img-placeholder">
+          <span>🏢</span>
+          <small>📌 solem_logo.png</small>
+        </div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-tag">Alternance</div>
+        <div class="exp-title">PRIMAL</div>
+        <div class="exp-period">2025 — 2026</div>
+        <div class="exp-bar"></div>
+        <p class="exp-desc">
+          Décrivez ici votre mission chez PRIMAL. Technologies utilisées,
+          responsabilités, projets menés et compétences acquises durant
+          cette expérience en alternance.
+        </p>
+        <button class="btn-savoir" onclick="openModal('modal-primal')">En savoir plus</button>
+      </div>
+    </div>
+
+    <div class="exp-sep"></div>
+
+    <!-- MHR — image droite -->
+    <div class="exp-row reverse" id="mhr">
+      <div>
+        <!--
+          📌 LOGO MHR :
+          Remplacez le div par :
+          <img class="exp-img" src="images/R.png" alt="MHR" />
+        -->
+        <div class="exp-img-placeholder">
+          <span>🏉</span>
+          <small>📌 R.png</small>
+        </div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-tag">Stage</div>
+        <div class="exp-title">MHR</div>
+        <div class="exp-period">2024</div>
+        <div class="exp-bar"></div>
+        <p class="exp-desc">
+          Décrivez ici votre mission au Montpellier Hérault Rugby. Technologies
+          utilisées, responsabilités, projets menés et compétences acquises
+          durant cette expérience.
+        </p>
+        <button class="btn-savoir" onclick="openModal('modal-mhr')">En savoir plus</button>
+      </div>
+    </div>
+
+    <div class="exp-sep"></div>
+
+    <!-- SFEI — image gauche -->
+    <div class="exp-row" id="sfei">
+      <div>
+        <!--
+          📌 LOGO SFEI :
+          Remplacez le div par :
+          <img class="exp-img" src="images/sfei-logo.png" alt="SFEI" />
+        -->
+        <div class="exp-img-placeholder">
+          <span>🏛️</span>
+          <small>📌 sfei-logo.png</small>
+        </div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-tag">Stage</div>
+        <div class="exp-title">SFEI</div>
+        <div class="exp-period">2023</div>
+        <div class="exp-bar"></div>
+        <p class="exp-desc">
+          Décrivez ici votre mission au SFEI. Technologies utilisées,
+          responsabilités, projets menés et compétences acquises durant
+          cette expérience.
+        </p>
+        <button class="btn-savoir" onclick="openModal('modal-sfei')">En savoir plus</button>
+      </div>
+    </div>
+
+    <div class="exp-sep"></div>
+
+    <!-- BDE GEII — image droite -->
+    <div class="exp-row reverse" id="bde-geii">
+      <div>
+        <!--
+          📌 LOGO BDE GEII :
+          Remplacez le div par :
+          <img class="exp-img" src="images/bde-logo.png" alt="BDE GEII" />
+        -->
+        <div class="exp-img-placeholder">
+          <span>🎓</span>
+          <small>📌 bde-logo.png</small>
+        </div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-tag">Engagement associatif</div>
+        <div class="exp-title">BDE GEII</div>
+        <div class="exp-period">2023 — 2024</div>
+        <div class="exp-bar"></div>
+        <p class="exp-desc">
+          Décrivez ici votre rôle au sein du Bureau Des Étudiants GEII.
+          Responsabilités, événements organisés et compétences développées
+          grâce à cet engagement.
+        </p>
+        <button class="btn-savoir" onclick="openModal('modal-bde')">En savoir plus</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ FOOTER ════════════════════ -->
+<footer>
+  © 2026 <span>Baptiste Serra</span> — Étudiant Alternant · Systèmes Embarqués &nbsp;|&nbsp; Tous droits réservés
+</footer>
+
+<!-- ═══════════════════ MODALES ══════════════════ -->
+
+<!-- Modale PRIMAL -->
+<div class="modal-overlay" id="modal-primal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-primal')">✕</button>
+    <div class="modal-header">
+      <div class="modal-logo-placeholder">🏢</div>
+      <!-- 📌 Remplacez le div par : <img class="modal-logo" src="images/solem_logo.png" alt="PRIMAL" /> -->
+      <div class="modal-title-wrap">
+        <div class="modal-tag">Alternance</div>
+        <div class="modal-title">PRIMAL</div>
+        <div class="modal-period">2025 — 2026</div>
+      </div>
+    </div>
+    <div class="modal-bar"></div>
+    <div class="modal-body">
+      <p>Décrivez ici en détail votre mission chez PRIMAL. Contexte de l'entreprise, équipe, environnement de travail.</p>
+      <p>Technologies et outils utilisés durant la mission.</p>
+      <ol>
+        <li>Première responsabilité ou tâche principale.</li>
+        <li>Deuxième responsabilité ou projet mené.</li>
+        <li>Troisième point clé de cette expérience.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- Modale MHR -->
+<div class="modal-overlay" id="modal-mhr">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-mhr')">✕</button>
+    <div class="modal-header">
+      <div class="modal-logo-placeholder">🏉</div>
+      <!-- 📌 Remplacez le div par : <img class="modal-logo" src="images/R.png" alt="MHR" /> -->
+      <div class="modal-title-wrap">
+        <div class="modal-tag">Stage</div>
+        <div class="modal-title">MHR</div>
+        <div class="modal-period">2024</div>
+      </div>
+    </div>
+    <div class="modal-bar"></div>
+    <div class="modal-body">
+      <p>Décrivez ici en détail votre mission au Montpellier Hérault Rugby. Contexte, équipe, environnement.</p>
+      <p>Technologies et outils utilisés durant le stage.</p>
+      <ol>
+        <li>Première responsabilité ou tâche principale.</li>
+        <li>Deuxième responsabilité ou projet mené.</li>
+        <li>Troisième point clé de cette expérience.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- Modale SFEI -->
+<div class="modal-overlay" id="modal-sfei">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-sfei')">✕</button>
+    <div class="modal-header">
+      <div class="modal-logo-placeholder">🏛️</div>
+      <!-- 📌 Remplacez le div par : <img class="modal-logo" src="images/sfei-logo.png" alt="SFEI" /> -->
+      <div class="modal-title-wrap">
+        <div class="modal-tag">Stage</div>
+        <div class="modal-title">SFEI</div>
+        <div class="modal-period">2023</div>
+      </div>
+    </div>
+    <div class="modal-bar"></div>
+    <div class="modal-body">
+      <p>Décrivez ici en détail votre mission au SFEI. Contexte, équipe, environnement de travail.</p>
+      <p>Technologies et outils utilisés durant le stage.</p>
+      <ol>
+        <li>Première responsabilité ou tâche principale.</li>
+        <li>Deuxième responsabilité ou projet mené.</li>
+        <li>Troisième point clé de cette expérience.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- Modale BDE GEII -->
+<div class="modal-overlay" id="modal-bde">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-bde')">✕</button>
+    <div class="modal-header">
+      <div class="modal-logo-placeholder">🎓</div>
+      <!-- 📌 Remplacez le div par : <img class="modal-logo" src="images/bde-logo.png" alt="BDE GEII" /> -->
+      <div class="modal-title-wrap">
+        <div class="modal-tag">Engagement associatif</div>
+        <div class="modal-title">BDE GEII</div>
+        <div class="modal-period">2023 — 2024</div>
+      </div>
+    </div>
+    <div class="modal-bar"></div>
+    <div class="modal-body">
+      <p>Décrivez ici en détail votre rôle au BDE GEII. Contexte, taille de l'équipe, objectifs de l'association.</p>
+      <p>Actions menées et événements organisés.</p>
+      <ol>
+        <li>Première responsabilité ou rôle dans l'association.</li>
+        <li>Événement ou projet organisé.</li>
+        <li>Compétences développées grâce à cet engagement.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Navbar scroll highlight
+  const sections = document.querySelectorAll('.exp-row[id]');
+  const navBtns  = document.querySelectorAll('.exp-nav-btn');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
+    navBtns.forEach(btn => btn.classList.toggle('active', btn.getAttribute('href') === '#' + current));
+  });
+
+  // Modales
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Fermer en cliquant sur l'overlay
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) closeModal(overlay.id);
+    });
+  });
+  // Fermer avec Échap
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+    }
+  });
+</script>
+
+</body>
+</html>
