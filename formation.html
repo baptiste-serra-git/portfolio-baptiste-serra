@@ -1,1 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mon Parcours - Baptiste SERRA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --dark: #1a1a1e;
+      --light-bg: #f4f4f6;
+      --white: #ffffff;
+      --accent: #c0392b;
+      --accent2: #e74c3c;
+      --gold: #f5a623;
+      --text-body: #444;
+      --border: #ddd;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--white); color: var(--text-body); overflow-x: hidden; }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 40px; background: rgba(26,26,30,0.95); backdrop-filter: blur(8px);
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--white); border-bottom: 1.5px solid var(--accent2); padding-bottom: 2px; }
+    .btn-outline {
+      border: 1.5px solid var(--white); color: var(--white);
+      padding: 8px 18px; font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; text-decoration: none; font-weight: 600;
+      transition: all 0.25s; font-family: 'Montserrat', sans-serif;
+      background: transparent; cursor: pointer;
+    }
+    .btn-outline:hover { background: var(--white); color: var(--dark); }
+
+    /* ─── PAGE WRAPPER ─── */
+    .page-wrapper { max-width: 900px; margin: 0 auto; padding: 110px 40px 80px; }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 300;
+      color: var(--dark); letter-spacing: 3px; margin-bottom: 12px;
+    }
+    .title-bar { width: 36px; height: 3px; background: var(--accent); margin-bottom: 60px; }
+
+    /* ─── TIMELINE ─── */
+    .timeline { position: relative; padding-left: 40px; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 6px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--dark);
+    }
+
+    .timeline-item { position: relative; margin-bottom: 56px; }
+    .timeline-dot {
+      position: absolute; left: -40px; top: 4px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--gold); border: 2px solid var(--gold);
+      box-shadow: 0 0 0 3px rgba(245,166,35,0.2);
+    }
+
+    .timeline-date {
+      font-size: 11px; font-weight: 600; letter-spacing: 3px;
+      color: #999; text-transform: uppercase; margin-bottom: 6px;
+      text-align: center;
+    }
+    .timeline-title {
+      font-size: 22px; font-weight: 700; color: var(--dark);
+      margin-bottom: 16px; text-align: center;
+    }
+    .timeline-card {
+      background: #f8f9fb;
+      border-left: 4px solid var(--gold);
+      padding: 20px 28px; border-radius: 0 4px 4px 0;
+    }
+    .timeline-card p {
+      font-size: 13px; line-height: 1.8; color: #555;
+      text-align: center; margin-bottom: 10px;
+    }
+    .timeline-card p:last-child { margin-bottom: 0; }
+    .timeline-highlight {
+      font-size: 13px; font-weight: 500; color: var(--dark);
+      text-align: center;
+    }
+    .btn-mention {
+      display: block; width: fit-content; margin: 10px auto 0;
+      background: var(--dark); color: var(--white);
+      padding: 7px 18px; font-size: 11px; font-weight: 600;
+      letter-spacing: 1px; border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* ─── SÉPARATEUR ─── */
+    .section-sep {
+      width: 100%; height: 1px; background: var(--border);
+      margin: 72px 0;
+    }
+
+    /* ─── HOBBIES EN QUINCONCE ─── */
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--dark); margin-bottom: 10px;
+    }
+    .hobbies-list { display: flex; flex-direction: column; gap: 56px; margin-top: 40px; }
+
+    .hobby-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 52px; align-items: center;
+    }
+    .hobby-row.reverse { direction: rtl; }
+    .hobby-row.reverse > * { direction: ltr; }
+
+    .hobby-img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      box-shadow: 0 10px 32px rgba(0,0,0,0.10);
+    }
+    .hobby-img-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: var(--light-bg);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px; box-shadow: 0 10px 32px rgba(0,0,0,0.08);
+    }
+    .hobby-img-placeholder span { font-size: 48px; }
+    .hobby-img-placeholder small {
+      font-size: 10px; color: #aaa; font-style: italic; letter-spacing: 1px;
+    }
+    .hobby-content {}
+    .hobby-name {
+      font-size: 11px; font-weight: 700; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+    }
+    .hobby-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px; font-weight: 300; color: var(--dark);
+      letter-spacing: 2px; margin-bottom: 8px;
+    }
+    .hobby-bar { width: 28px; height: 2px; background: var(--accent); margin-bottom: 18px; }
+    .hobby-desc { font-size: 12.5px; line-height: 1.9; color: #666; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.45);
+      text-align: center; padding: 28px 40px;
+      font-size: 11px; letter-spacing: 1.5px; margin-top: 80px;
+    }
+    footer span { color: var(--accent2); }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .page-wrapper { padding: 100px 20px 60px; }
+      .page-title { font-size: 36px; }
+      .hobby-row, .hobby-row.reverse { grid-template-columns: 1fr; direction: ltr; gap: 24px; }
+      .timeline { padding-left: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="competences.html">Compétences</a></li>
+    <li><a href="formation.html" class="active">Mon Parcours</a></li>
+    <li><a href="projets.html">Projets</a></li>
+    <li><a href="experiences.html">Expériences</a></li>
+  </ul>
+  <a href="cv-baptiste-serra.pdf" class="btn-outline">Télécharger mon CV</a>
+</nav>
+
+<!-- ═══════════════════ CONTENU ══════════════════ -->
+<div class="page-wrapper">
+
+  <h1 class="page-title">Mon Parcours</h1>
+  <div class="title-bar"></div>
+
+  <!-- ═══ TIMELINE ═══ -->
+  <div class="timeline">
+
+    <!-- Baccalauréat -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2019 — 2022</div>
+      <div class="timeline-title">Baccalauréat Général</div>
+      <div class="timeline-card">
+        <p>Spécialités <strong>Mathématiques, NSI, Physique-Chimie.</strong></p>
+        <span class="btn-mention">Mention Bien</span>
+      </div>
+    </div>
+
+    <!-- BUT1 — redoublement -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2022 — 2024</div>
+      <div class="timeline-title">IUT Montpellier-Sète (BUT1)</div>
+      <div class="timeline-card">
+        <p>Début du parcours en Génie Électrique et Informatique Industrielle.</p>
+        <p class="timeline-highlight">⚡ <strong>Sélection :</strong> Admis 4ème sur 100 candidatures.</p>
+      </div>
+    </div>
+
+    <!-- BUT2 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2024 — 2025</div>
+      <div class="timeline-title">Approfondissement (BUT2)</div>
+      <div class="timeline-card">
+        <p>Spécialisation en Électronique et Systèmes Embarqués (ESE).</p>
+        <p class="timeline-highlight">🥈 <strong>Classement :</strong> 2ème / 30 étudiants.</p>
+      </div>
+    </div>
+
+    <!-- BUT3 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2025 — 2026</div>
+      <div class="timeline-title">Finalité (BUT3)</div>
+      <div class="timeline-card">
+        <p>Spécialisation en Électronique et Systèmes Embarqués (ESE) en alternance.</p>
+        <p class="timeline-highlight">🏆 <strong>Objectif :</strong> 1er / 14 étudiants.</p>
+      </div>
+    </div>
+
+    <!-- Poursuite -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Poursuite</div>
+      <div class="timeline-title">Objectif : École d'Ingénieur</div>
+      <div class="timeline-card">
+        <p>Actuellement en recherche d'alternances sur Toulouse.</p>
+        <p class="timeline-highlight">🎯 <strong>Vise :</strong> Cursus ingénieur (Toulouse / Montpellier).</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ SÉPARATEUR ═══ -->
+  <div class="section-sep"></div>
+
+  <!-- ═══ HOBBIES ═══ -->
+  <div class="section-label">Centres d'intérêt</div>
+  <div class="title-bar"></div>
+
+  <div class="hobbies-list">
+
+    <!-- Hobby 1 — image gauche -->
+    <div class="hobby-row">
+      <div>
+        <!--
+          📌 IMAGE HOBBY 1 :
+          Remplacez le div par :
+          <img class="hobby-img" src="images/hobby1.png" alt="Hobby 1" />
+        -->
+        <div class="hobby-img-placeholder">
+          <span>🎸</span>
+          <small>📌 hobby1.png</small>
+        </div>
+      </div>
+      <div class="hobby-content">
+        <div class="hobby-title">Hobby 1</div>
+        <div class="hobby-bar"></div>
+        <p class="hobby-desc">
+          Décrivez ici votre premier hobby. Parlez de votre passion,
+          depuis quand vous le pratiquez et ce que ça vous apporte
+          au quotidien.
+        </p>
+      </div>
+    </div>
+
+    <!-- Hobby 2 — image droite -->
+    <div class="hobby-row reverse">
+      <div>
+        <!--
+          📌 IMAGE HOBBY 2 :
+          Remplacez le div par :
+          <img class="hobby-img" src="images/hobby2.png" alt="Hobby 2" />
+        -->
+        <div class="hobby-img-placeholder">
+          <span>🏎️</span>
+          <small>📌 hobby2.png</small>
+        </div>
+      </div>
+      <div class="hobby-content">
+        <div class="hobby-title">Hobby 2</div>
+        <div class="hobby-bar"></div>
+        <p class="hobby-desc">
+          Décrivez ici votre deuxième hobby. Parlez de votre passion,
+          depuis quand vous le pratiquez et ce que ça vous apporte
+          au quotidien.
+        </p>
+      </div>
+    </div>
+
+    <!-- Hobby 3 — image gauche -->
+    <div class="hobby-row">
+      <div>
+        <!--
+          📌 IMAGE HOBBY 3 :
+          Remplacez le div par :
+          <img class="hobby-img" src="images/hobby3.png" alt="Hobby 3" />
+        -->
+        <div class="hobby-img-placeholder">
+          <span>🎮</span>
+          <small>📌 hobby3.png</small>
+        </div>
+      </div>
+      <div class="hobby-content">
+        <div class="hobby-title">Hobby 3</div>
+        <div class="hobby-bar"></div>
+        <p class="hobby-desc">
+          Décrivez ici votre troisième hobby. Parlez de votre passion,
+          depuis quand vous le pratiquez et ce que ça vous apporte
+          au quotidien.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ═══════════════════ FOOTER ════════════════════ -->
+<footer>
+  © 2026 <span>Baptiste Serra</span> — Étudiant Alternant · Systèmes Embarqués &nbsp;|&nbsp; Tous droits réservés
+</footer>
+
+</body>
+</html>
