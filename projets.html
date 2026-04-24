@@ -162,12 +162,8 @@
     }
     .modal-bar { width: 36px; height: 2px; background: var(--accent); margin-bottom: 24px; }
     .modal-img {
-      width: 100%; max-height: 260px; object-fit: cover; margin-bottom: 24px;
-    }
-    .modal-img-placeholder {
-      width: 100%; height: 200px; background: var(--light-bg);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; color: #aaa; font-style: italic; margin-bottom: 24px;
+      width: 100%; max-height: 260px; object-fit: contain;
+      margin-bottom: 24px; background: var(--light-bg);
     }
     .modal-body p {
       font-size: 13px; line-height: 1.9; color: #555;
@@ -217,18 +213,18 @@
 
   <!-- ─── NAVBAR PROJETS ─── -->
   <div class="proj-navbar">
-    <a href="#robot-sumo"   class="proj-nav-btn">Robot Rover</a>
-    <a href="#projet-pro"   class="proj-nav-btn">Projet Pro</a>
-    <a href="#prototype"    class="proj-nav-btn">Prototype</a>
+    <a href="#robot-sumo" class="proj-nav-btn">Robot Rover</a>
+    <a href="#projet-pro" class="proj-nav-btn">Projet Pro</a>
+    <a href="#prototype"  class="proj-nav-btn">Prototype</a>
   </div>
 
   <!-- ─── LISTE DES PROJETS ─── -->
   <div class="proj-list">
 
-    <!-- Robot Sumo — image gauche -->
+    <!-- Robot Rover — image gauche -->
     <div class="proj-row" id="robot-sumo">
       <div>
-        <img class="proj-img" src="image-projets/robot-rover.png" alt="Robot Sumo" />
+        <img class="proj-img" src="image-projets/robot.png" alt="Robot Rover" />
       </div>
       <div>
         <div class="proj-tag">Projet tutoré</div>
@@ -242,7 +238,7 @@
 
     <div class="proj-sep"></div>
 
-    <!-- Projet professionnel — image gauche -->
+    <!-- Projet professionnel — image droite -->
     <div class="proj-row reverse" id="projet-pro">
       <div>
         <img class="proj-img" src="image-projets/projet-pro.png" alt="Projet professionnel" />
@@ -258,7 +254,7 @@
 
     <div class="proj-sep"></div>
 
-    <!-- Prototype — image droite -->
+    <!-- Prototype — image gauche -->
     <div class="proj-row" id="prototype">
       <div>
         <img class="proj-img" src="image-projets/prototype.png" alt="Prototype" />
@@ -267,7 +263,7 @@
         <div class="proj-tag">Projet académique</div>
         <div class="proj-title">Prototype système de mesure</div>
         <div class="proj-bar"></div>
-        <p class="proj-desc">Prototype d'un système de mesure de température et de qualité d'air connecté.Conception des capteurs utilisés, de l'architecture embarquée et de la connectivité mise en place.</p>
+        <p class="proj-desc">Prototype d'un système de mesure de température et de qualité d'air connecté. Conception des capteurs utilisés, de l'architecture embarquée et de la connectivité mise en place.</p>
         <button class="btn-savoir" onclick="openModal('modal-proto')">En savoir plus</button>
       </div>
     </div>
@@ -277,16 +273,14 @@
 
 <!-- ═══════════════════ MODALES ══════════════════ -->
 
-<!-- Modale Robot Sumo -->
+<!-- Modale Robot Rover -->
 <div class="modal-overlay" id="modal-sumo">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('modal-sumo')">✕</button>
     <div class="modal-tag">Projet tutoré</div>
     <div class="modal-title">Robot Rover</div>
     <div class="modal-bar"></div>
-    <div class="modal-img-placeholder">
-      <img class="proj-img" src="image-projets/robot-rover.png" alt="Robot Sumo" />
-    </div>
+    <img class="modal-img" src="image-projets/robot.png" alt="Robot Rover" />
     <div class="modal-body">
       <p>Ce projet a été le plus important de ma deuxième année d'études. C'est celui qui m'a permis d'avoir une excellente note pour le projet tutoré.</p>
       <p>L'objectif était de réaliser, par groupe de trois, un robot rover piloté en bluetooth à distance avec un stream vidéo.</p>
@@ -306,9 +300,7 @@
     <div class="modal-tag">Projet professionnel</div>
     <div class="modal-title">Projet professionnel</div>
     <div class="modal-bar"></div>
-    <div class="modal-img-placeholder">
-      <img class="proj-img" src="image-projets/projet-pro.png" alt="Projet professionnel" />
-    </div>
+    <img class="modal-img" src="image-projets/projet-pro.png" alt="Projet professionnel" />
     <div class="modal-body">
       <p>Dans la gamme ATTENTIVE, une nouvelle base de téléassistance a été conçu et ce fut ma mission de la qualifier.</p>
       <ol>
@@ -327,9 +319,7 @@
     <div class="modal-tag">Projet académique</div>
     <div class="modal-title">Prototype système de mesure</div>
     <div class="modal-bar"></div>
-    <div class="modal-img-placeholder">
-      <img class="proj-img" src="image-projets/prototype.png" alt="Prototype" />
-    </div>
+    <img class="modal-img" src="image-projets/prototype.png" alt="Prototype" />
     <div class="modal-body">
       <p>Prototype d'un système de mesure de température et de qualité d'air connecté.</p>
       <ol>
@@ -347,7 +337,6 @@
 </footer>
 
 <script>
-  // Navbar scroll highlight
   const sections = document.querySelectorAll('.proj-row[id]');
   const navBtns  = document.querySelectorAll('.proj-nav-btn');
   window.addEventListener('scroll', () => {
@@ -356,7 +345,6 @@
     navBtns.forEach(btn => btn.classList.toggle('active', btn.getAttribute('href') === '#' + current));
   });
 
-  // Modales
   function openModal(id) {
     document.getElementById(id).classList.add('open');
     document.body.style.overflow = 'hidden';
