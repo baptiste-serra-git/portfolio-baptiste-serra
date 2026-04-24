@@ -81,13 +81,10 @@
     .accordion-btn:hover { color: var(--white); }
     .accordion-btn.open { color: var(--white); }
     .accordion-icon {
-      width: 28px; height: 28px; border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.3);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; flex-shrink: 0;
-      transition: transform 0.3s, background 0.2s;
+      font-size: 18px;
+      transition: transform 0.3s;
     }
-    .accordion-btn.open .accordion-icon { transform: rotate(180deg); background: rgba(255,255,255,0.1); }
+    .accordion-btn.open .accordion-icon { transform: rotate(180deg); }
     .accordion-body {
       max-height: 0; overflow: hidden;
       transition: max-height 0.4s ease;
@@ -249,10 +246,10 @@
 <nav>
   <ul class="nav-links">
     <li><a href="index.html">Accueil</a></li>
-    <li><a href="competences.html">Compétences</a></li>
     <li><a href="formation.html">Mon Parcours</a></li>
-    <li><a href="projets.html" class="active">Projets</a></li>
-    <li><a href="experiences.html">Expériences</a></li>
+    <li><a href="competences.html">Mes compétences</a></li>
+    <li><a href="projets.html" class="active">Mes projets</a></li>
+    <li><a href="experiences.html">Mes expériences</a></li>
   </ul>
   <a href="cv-baptiste-serra.pdf" class="btn-outline">Télécharger mon CV</a>
 </nav>
